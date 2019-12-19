@@ -1,7 +1,9 @@
 package ir.mctab.java32.hibernate.projects.hibernatestart.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "incident")
@@ -11,14 +13,27 @@ public class Incident {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title" , nullable = false, length = 22)
+    @Column(name = "title", nullable = false, length = 22)
     private String title;
 
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false)
     private Date createDate;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "incident")
+    private List<IncidentComment> incidentComments = new ArrayList<>();
+
+    public Incident() {
+
+    }
+
+    public Incident(String title, String description, Date createDate) {
+        this.title = title;
+        this.description = description;
+        this.createDate = createDate;
+    }
 
     public Long getId() {
         return id;
@@ -52,13 +67,12 @@ public class Incident {
         this.createDate = createDate;
     }
 
-    public Incident() {
+    public List<IncidentComment> getIncidentComments() {
+        return incidentComments;
     }
 
-    public Incident( String title, String description, Date createDate) {
-        this.title = title;
-        this.description = description;
-        this.createDate = createDate;
+    public void setIncidentComments(List<IncidentComment> incidentComments) {
+        this.incidentComments = incidentComments;
     }
 
     @Override
@@ -70,7 +84,4 @@ public class Incident {
                 ", createDate=" + createDate +
                 '}';
     }
-
-
-
 }

@@ -19,5 +19,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <!-- Mapping -->
         <mapping class="ir.mctab.java32.hibernate.projects.hibernatestart.entities.Incident" />
+        <mapping class="ir.mctab.java32.hibernate.projects.hibernatestart.entities.IncidentComment" />
     </session-factory>
 </hibernate-configuration>

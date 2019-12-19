@@ -17,4 +17,5 @@ public class IncidentComment {
     private String comment;
     @ManyToOne
     private Incident incident;
+
 }
